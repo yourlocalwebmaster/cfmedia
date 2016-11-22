@@ -5,17 +5,6 @@ use PHPUnit\Framework\TestCase;
 class CafeMediaTest extends TestCase
 {
 
-    /**
-     * Ensure the timestamp contains 00:00:00 format.
-     */
-    public function testTimeFormatValid(){
+    //TODO: To do if there is time.
 
-    }
-
-    /**
-     * Ensure the year exists..
-     */
-    public function testYearExists(){
-
-    }
 }
