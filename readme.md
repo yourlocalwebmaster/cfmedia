@@ -1,4 +1,4 @@
-=Installation=
---bower install--
---composer install--
+==Installation==
+*bower install*
+*composer install*
 
