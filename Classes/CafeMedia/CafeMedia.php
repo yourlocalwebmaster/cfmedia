@@ -9,15 +9,21 @@ class CafeMedia{
 
     private $csv;
     protected $debug = false;
-    public $header,$format;
+    public $header,$format, $verbose;
     //public $top_posts, $other_posts, $daily_top_posts = [];
 
-
-    public function __construct($path, $format = "csv")
+    /**
+     * CafeMedia constructor.
+     * @param $path
+     * @param string $format
+     * @param int $verbose
+     */
+    public function __construct($path, $format = "csv", $verbose = 1)
     {
         $this->csv = Reader::createFromPath($path);
         $this->headers = $this->csv->fetchOne(); // save this for the out put CSV
         $this->format = $format;
+        $this->verbose = $verbose;
     }
 
 
@@ -155,14 +161,27 @@ class CafeMedia{
         switch($this->format):
             case 'json':
                 $json_file = new SplFileObject($file, 'w');
+
+                if(!$this->verbose){
+                    $newData = [];
+                    foreach($data as $row){
+                        $newData[] = ['id'=>$row['id']];
+                    }
+                    $data = $newData;
+                }
                 $json_file->fwrite(json_encode($data));
+
             break;
 
             case 'csv':
                 $csv_file = new SplFileObject($file, 'w');
-                $csv_file->fputcsv($this->headers);
+
+                if($this->verbose) $csv_file->fputcsv($this->headers);
+                else $csv_file->fputcsv([$this->headers[0]]); // only write ID.
+
                 foreach($data as $row):
-                    $csv_file->fputcsv($row);
+                    if($this->verbose) $csv_file->fputcsv($row);
+                    else $csv_file->fputcsv([$row['id']]);
                 endforeach;
             break;
         endswitch;

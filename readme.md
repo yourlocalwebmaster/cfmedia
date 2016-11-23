@@ -1,6 +1,6 @@
 ##Installation##
 
-**Index.php should be the root of your server & lib will need write access.**
+**Index.php is entry point.**
 
 1. `bower install`
 

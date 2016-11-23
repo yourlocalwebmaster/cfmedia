@@ -7,7 +7,7 @@ require_once('../vendor/autoload.php');
 if(!isset($_FILES['csv']) || !isset($_POST['format'])) header('HTTP/1.0 403 Forbidden');
 
 $format = $_POST['format']; // again, see security disclaimer above..
-$CafeMedia = new CafeMedia\CafeMedia($_FILES["csv"]["tmp_name"], $format);
+$CafeMedia = new CafeMedia\CafeMedia($_FILES["csv"]["tmp_name"], $format, $_POST['details']);
 
 $topPosts = $CafeMedia->getTopPosts();
 $CafeMedia->generate($topPosts, "top_posts");

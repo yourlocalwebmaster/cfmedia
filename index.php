@@ -45,6 +45,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="details">Detailed Mode</label>
+                            <select name="details"required>
+                                <option value="1" selected>yes</option>
+                                <option value="0">no</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="format">Format</label>
                             <select name="format"required>
                                 <option value="json">JSON</option>
